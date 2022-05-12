@@ -16,7 +16,7 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Phone')}
+          onPress={() => navigation.navigate('GoogleDrive')}
           style={styles.buttonStyle}>
           <Text style={styles.buttonTextStyle}>next</Text>
         </TouchableOpacity>

@@ -43,7 +43,7 @@ const UsernameScreen: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('CheckMail')}
+          onPress={() => navigation.navigate('Passcode')}
           style={styles.buttonStyle}>
           <Text style={styles.buttonTextStyle}>next</Text>
         </TouchableOpacity>
