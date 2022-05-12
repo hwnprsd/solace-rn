@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     color: 'white',
     padding: 14,
+    display: 'none',
     borderWidth: 1,
     fontFamily: 'SpaceMono-Bold',
   },
