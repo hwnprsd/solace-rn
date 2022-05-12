@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import React from 'react';
 import styles from './styles';
 
@@ -11,7 +11,10 @@ const GoogleDriveScreen: React.FC<Props> = ({navigation}) => {
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.heading}>drive icon</Text>
+          <Image
+            source={require('../../../../assets/images/solace/google-drive.png')}
+            style={styles.image}
+          />
           <Text style={styles.heading}>secure your wallet</Text>
           <Text style={styles.subHeading}>
             store your encrypted key in google drive so you can recover your

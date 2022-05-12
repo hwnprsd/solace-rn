@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonContainer: {
     flex: 1,
@@ -17,8 +18,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
+    marginTop: 16,
     color: 'white',
     fontSize: 28,
+    textTransform: 'lowercase',
+    fontFamily: 'Poppins-SemiBold',
   },
   container: {
     paddingTop: 30,

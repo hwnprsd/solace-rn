@@ -1,19 +1,21 @@
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import React from 'react';
 import styles from './styles';
+// import * as solana from '@solana/web3.js';
 
 export type Props = {
   navigation: any;
 };
 
-const LoginScreen: React.FC<Props> = ({navigation}) => {
+const HomeScreen: React.FC<Props> = ({navigation}) => {
+  // console.log(solana);
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          {/* <Image
-            source={require('../../../../assets/images/solace-icon.jpeg')}
-          /> */}
+          <Image
+            source={require('../../../../assets/images/solace/solace-icon.png')}
+          />
           <Text style={styles.logo}>Solace</Text>
         </View>
         <View style={styles.buttonContainer}>
@@ -34,4 +36,4 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
     </ScrollView>
   );
 };
-export default LoginScreen;
+export default HomeScreen;

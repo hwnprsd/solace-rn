@@ -1,4 +1,11 @@
-import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  FlatList,
+  Image,
+} from 'react-native';
 import React from 'react';
 import styles from './styles';
 
@@ -61,7 +68,10 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.headingContainer}>
-        <Text style={styles.mainText}>S</Text>
+        <Image
+          source={require('../../../../assets/images/solace/solace-icon.png')}
+          style={styles.image}
+        />
         <Text style={styles.username}>ankit.solace.money</Text>
       </View>
       <View style={styles.headingContainer}>

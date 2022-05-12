@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import React from 'react';
 import styles from './styles';
 
@@ -11,7 +11,10 @@ const CheckMailScreen: React.FC<Props> = ({navigation}) => {
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.heading}>mail icon</Text>
+          <Image
+            source={require('../../../../assets/images/solace/mail.png')}
+            style={{marginLeft: -6}}
+          />
           <Text style={styles.heading}>check you mail</Text>
           <Text style={styles.subHeading}>
             please tap the link we sent to ankitzethi@gmail.com

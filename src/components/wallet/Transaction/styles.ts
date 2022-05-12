@@ -12,14 +12,14 @@ const styles = StyleSheet.create({
   imageContainer: {
     height: 40,
     width: 40,
-    backgroundColor: 'white',
+    backgroundColor: '#9999A5',
     borderRadius: 20,
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 8,
+    marginRight: 12,
   },
-  imageText: {fontFamily: 'Poppins-Bold'},
+  imageText: {fontFamily: 'Poppins-Bold', color: 'white'},
   from: {
     color: '#cacaca',
     textTransform: 'lowercase',

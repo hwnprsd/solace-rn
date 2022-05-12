@@ -40,6 +40,15 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceMono-Bold',
     textTransform: 'lowercase',
   },
+  hiddenInput: {
+    borderColor: '#fff3',
+    marginTop: 20,
+    borderRadius: 3,
+    color: 'white',
+    padding: 14,
+    borderWidth: 1,
+    fontFamily: 'SpaceMono-Bold',
+  },
 });
 
 export default styles;

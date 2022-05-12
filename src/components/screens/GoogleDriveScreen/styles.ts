@@ -41,6 +41,11 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: 'Poppins-SemiBold',
   },
+  image: {
+    width: 70,
+    height: 70,
+    marginBottom: 5,
+  },
   subHeading: {
     color: '#919BA6',
     fontSize: 16,

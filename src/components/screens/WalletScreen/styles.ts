@@ -13,6 +13,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  image: {
+    height: 35,
+    resizeMode: 'contain',
+    overflow: 'hidden',
+  },
   mainText: {
     color: 'white',
     fontFamily: 'SpaceMono-Bold',
@@ -26,6 +31,8 @@ const styles = StyleSheet.create({
   username: {
     color: 'white',
     fontFamily: 'Poppins-SemiBold',
+    marginTop: 8,
+    fontSize: 18,
   },
   buttonsContainer: {
     flex: 1,
@@ -43,9 +50,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
-    width: 40,
-    borderRadius: 20,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
     overflow: 'hidden',
   },
   buttonText: {
