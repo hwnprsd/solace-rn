@@ -60,94 +60,36 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
-      <View style={[styles.headingContainer, {flex: 0.5}]}>
+      <View style={styles.headingContainer}>
         <Text style={styles.mainText}>S</Text>
-        <Text style={styles.usernameText}>ankit.solace.money</Text>
+        <Text style={styles.username}>ankit.solace.money</Text>
       </View>
-      <View style={[styles.headingContainer, {flex: 0.5, width: '80%'}]}>
-        <Text style={styles.priceText}>$0.04</Text>
-        <View
-          style={{
-            flex: 1,
-            width: '60%',
-            flexDirection: 'row',
-            marginTop: 10,
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <View
-              style={{
-                backgroundColor: 'white',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: 40,
-                width: 40,
-                borderRadius: 20,
-                overflow: 'hidden',
-              }}>
+      <View style={styles.headingContainer}>
+        <Text style={styles.price}>$0.04</Text>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <View style={styles.iconBackground}>
               <AntDesign name="arrowup" size={20} color="black" />
             </View>
-            <Text style={{color: 'white', marginTop: 12}}>send</Text>
+            <Text style={styles.buttonText}>send</Text>
           </View>
-          <View style={{justifyContent: 'flex-start', alignItems: 'center'}}>
-            <View
-              style={{
-                backgroundColor: 'white',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: 40,
-                width: 40,
-                borderRadius: 20,
-                overflow: 'hidden',
-              }}>
+          <View style={styles.buttonContainer}>
+            <View style={styles.iconBackground}>
               <AntDesign name="arrowdown" size={20} color="black" />
             </View>
-            <Text style={{color: 'white', marginTop: 12}}>recieve</Text>
+            <Text style={styles.buttonText}>recieve</Text>
           </View>
         </View>
-        {/* <Text style={styles.usernameText}>ankit.solace.money</Text> */}
       </View>
-      <View
-        style={{
-          flex: 1,
-          marginTop: 40,
-          width: '90%',
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginBottom: 16,
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 20,
-              fontFamily: 'Poppins-SemiBold',
-            }}>
-            wallet activity
-          </Text>
-          <Text
-            style={{
-              color: '#9999A5',
-              fontSize: 14,
-              fontFamily: 'SpaceMono-Bold',
-            }}>
-            see more
-          </Text>
+      <View style={styles.walletContainer}>
+        <View style={styles.walletHeader}>
+          <Text style={styles.heading}>wallet activity</Text>
+          <Text style={styles.sideHeading}>see more</Text>
         </View>
         <ScrollView>
           {DATA.map((item: any) => {
             return <Transaction key={item.id} item={item} />;
           })}
-          {/* <FlatList
-            data={DATA}
-            // horizontal={true}
-            renderItem={renderItem}
-            keyExtractor={item => item.id.toString()}
-          /> */}
         </ScrollView>
       </View>
     </ScrollView>
