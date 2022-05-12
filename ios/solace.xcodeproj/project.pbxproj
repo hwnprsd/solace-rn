@@ -29,6 +29,7 @@
 		895ADE61F4194909BFE69F18 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F64C7BB684A45FCB1FB6990 /* Poppins-ExtraLightItalic.ttf */; };
 		ACB4C4D845EB495DBE900B03 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7145BEEB8E574D709BD75ED0 /* Poppins-Regular.ttf */; };
 		B65B8D2921F1402799F3121E /* SpaceMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC09457AFF4FEAAC4C25BD /* SpaceMono-BoldItalic.ttf */; };
+		BC4F0C93282CD5AE00F6B6CA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BC4F0C92282CD5AE00F6B6CA /* Fonts */; };
 		BD5218925B4E4BDE9C0231A6 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB4EEA162E4470DA296BCEF /* Poppins-Italic.ttf */; };
 		D445CD8D29784417B927301D /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB439A70C5234D5295291FD7 /* SpaceMono-Regular.ttf */; };
 		D631F79B994E40048E767C0F /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5643984DED0413B82F5DBA6 /* Poppins-SemiBoldItalic.ttf */; };
@@ -81,6 +82,7 @@
 		A6AC09457AFF4FEAAC4C25BD /* SpaceMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpaceMono-BoldItalic.ttf"; path = "../assets/fonts/SpaceMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		AD57552040564F89AAE80BED /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
 		AE74CED710574181BF056631 /* SpaceMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpaceMono-Italic.ttf"; path = "../assets/fonts/SpaceMono-Italic.ttf"; sourceTree = "<group>"; };
+		BC4F0C92282CD5AE00F6B6CA /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		C4033029EF9D466FABF0615E /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		CB439A70C5234D5295291FD7 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpaceMono-Regular.ttf"; path = "../assets/fonts/SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
 		D5643984DED0413B82F5DBA6 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		13B07FAE1A68108700A75B9A /* solace */ = {
 			isa = PBXGroup;
 			children = (
+				BC4F0C92282CD5AE00F6B6CA /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -321,6 +324,7 @@
 				D6DC246B4C92486BAFE9322D /* Poppins-Black.ttf in Resources */,
 				1D55295313404DC5AA1D196F /* Poppins-BlackItalic.ttf in Resources */,
 				3F0725D52D8640EFA955FCD6 /* Poppins-Bold.ttf in Resources */,
+				BC4F0C93282CD5AE00F6B6CA /* Fonts in Resources */,
 				5F52488BB6A34587A4307110 /* Poppins-BoldItalic.ttf in Resources */,
 				653403446DCB47CD81DE4928 /* Poppins-ExtraBold.ttf in Resources */,
 				7D78CA17003A430E86A2C1BA /* Poppins-ExtraBoldItalic.ttf in Resources */,
