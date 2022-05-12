@@ -15,6 +15,7 @@ export type Props = {
 
 const UsernameScreen: React.FC<Props> = ({navigation}) => {
   const [text, setText] = useState('');
+  const [borderColor, setBorderColor] = useState('#fff3');
   const [infoText, setInfoText] = useState('your username will be public');
 
   return (
@@ -26,23 +27,19 @@ const UsernameScreen: React.FC<Props> = ({navigation}) => {
             choose a username that others can use to send you money
           </Text>
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput, {borderColor}]}
             placeholder="username"
             placeholderTextColor="#fff6"
             value={text}
+            autoCorrect={false}
+            autoCapitalize={'none'}
+            onFocus={() => setBorderColor('#fff6')}
+            onBlur={() => setBorderColor('#fff3')}
             onChangeText={setText}
           />
-          <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 4,
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-            }}>
-            <AntDesign name="windows" style={{color: 'red'}} />
-            <Text style={{color: 'gray', fontFamily: 'Poppins-SemiBold'}}>
-              {infoText}
-            </Text>
+          <View style={styles.subTextContainer}>
+            <AntDesign name="infocirlceo" style={styles.subIcon} />
+            <Text style={styles.subText}>{infoText}</Text>
           </View>
         </View>
         <TouchableOpacity

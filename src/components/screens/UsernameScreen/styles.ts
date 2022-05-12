@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     backgroundColor: '#131313',
     flex: 1,
-    // height: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceMono-Bold',
   },
   textInput: {
-    borderColor: 'rgba(255,255,255,0.2)',
+    borderColor: '#fff3',
     marginTop: 20,
     borderRadius: 3,
     color: 'white',
@@ -54,6 +53,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'SpaceMono-Bold',
     textTransform: 'lowercase',
+  },
+  subTextContainer: {
+    flexDirection: 'row',
+    marginTop: 8,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  subIcon: {color: 'gray', fontSize: 16, fontWeight: 'bold'},
+  subText: {
+    paddingLeft: 6,
+    color: 'gray',
+    fontFamily: 'Poppins-SemiBold',
   },
 });
 
