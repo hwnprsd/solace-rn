@@ -25,7 +25,11 @@ const styles = StyleSheet.create({
     textTransform: 'lowercase',
     fontFamily: 'SpaceMono-Bold',
   },
-  username: {flexDirection: 'row', alignItems: 'center'},
+  username: {
+    color: 'white',
+    textTransform: 'lowercase',
+    fontFamily: 'SpaceMono-Bold',
+  },
 });
 
 export default styles;
