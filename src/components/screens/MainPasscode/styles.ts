@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   passcodeContainer: {
     flexDirection: 'row',
-    marginTop: 50,
+    marginVertical: 50,
     justifyContent: 'center',
   },
   headingContainer: {
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
   },
   fingerprint: {
     color: '#9999A5',
-    marginTop: 50,
     fontFamily: 'SpaceMono-Bold',
     textAlign: 'center',
   },

@@ -7,10 +7,9 @@ type InitialStateType = {
 };
 
 const initialState = {
-  user: false,
+  user: true,
   username: 'rahul',
 };
-type Actions = {};
 
 export const GlobalContext = createContext<{
   state: InitialStateType;

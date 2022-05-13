@@ -8,8 +8,10 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import styles from './styles';
+import {GlobalContext} from '../../../state/contexts/GlobalContext';
+import {setUser} from '../../../state/actions/global';
 
 export type Props = {
   navigation: any;
@@ -18,6 +20,7 @@ export type Props = {
 const ConfirmPasscodeScreen: React.FC<Props> = ({navigation}) => {
   const [code, setCode] = useState('');
   const textInputRef = useRef(null);
+  const {dispatch} = useContext(GlobalContext);
   const [pinReady, setPinReady] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const MAX_LENGTH = 5;
@@ -38,7 +41,7 @@ const ConfirmPasscodeScreen: React.FC<Props> = ({navigation}) => {
 
   const checkPinReady = () => {
     if (code.length === MAX_LENGTH) {
-      navigation.navigate('Wallet');
+      dispatch(setUser(true));
     } else {
       Alert.alert('Enter passcode');
     }
