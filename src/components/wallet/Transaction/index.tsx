@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import moment from 'moment';
 import styles from './styles';
@@ -7,7 +7,7 @@ const Transaction = ({item}: {item: any}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.date}>{moment(item.date).format('DD MMM yyyy')}</Text>
-      <View style={styles.item}>
+      <TouchableOpacity style={styles.item}>
         <View style={styles.imageContainer}>
           <Text style={styles.imageText}>ap</Text>
         </View>
@@ -15,7 +15,7 @@ const Transaction = ({item}: {item: any}) => {
           <Text style={styles.from}>from</Text>
           <Text style={styles.username}>{item.username}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

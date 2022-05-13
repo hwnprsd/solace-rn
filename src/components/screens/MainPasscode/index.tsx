@@ -7,15 +7,16 @@ import {
   TextInputComponent,
   Pressable,
   Alert,
+  Image,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './styles';
 
 export type Props = {
   navigation: any;
 };
 
-const PasscodeScreen: React.FC<Props> = ({navigation}) => {
+const MainPasscodeScreen: React.FC<Props> = ({navigation}) => {
   const [code, setCode] = useState('');
   const textInputRef = useRef(null);
   const [pinReady, setPinReady] = useState(false);
@@ -24,32 +25,48 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
 
   const tempArray = new Array(MAX_LENGTH).fill(0);
 
-  const handleOnPress = () => {
+  const focusMainInput = () => {
     setIsFocused(true);
     const textInput = textInputRef.current! as TextInput;
     textInput.focus();
+  };
+
+  const handleOnPress = () => {
+    focusMainInput();
   };
 
   useEffect(() => {
-    setIsFocused(true);
-    const textInput = textInputRef.current! as TextInput;
-    textInput.focus();
+    focusMainInput();
   }, []);
 
-  const checkPinReady = () => {
+  const checkPinReady = useCallback(() => {
     if (code.length === MAX_LENGTH) {
-      navigation.navigate('ConfirmPasscode');
-    } else {
-      Alert.alert('Enter passcode');
+      if (code === '12345') {
+        navigation.navigate('Wallet');
+      } else {
+        Alert.alert('incorret passcode');
+        setCode('');
+        focusMainInput();
+      }
     }
-  };
+  }, [code, navigation]);
+
+  useEffect(() => {
+    checkPinReady();
+  }, [code, checkPinReady]);
+
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>
+        <View style={styles.headingContainer}>
+          <Image
+            source={require('../../../../assets/images/solace/solace-icon.png')}
+            style={styles.image}
+          />
+          <Text style={styles.username}>solace</Text>
+        </View>
         <View style={styles.textContainer}>
-          <Text style={styles.heading}>
-            choose a passcode to protect your wallet on this device
-          </Text>
+          <Text style={styles.heading}>enter passcode</Text>
           <TouchableOpacity
             onPress={() => handleOnPress()}
             onBlur={() => handleOnPress()}
@@ -67,7 +84,8 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
                   style={{
                     width: 16,
                     height: 16,
-                    marginRight: 24,
+                    marginLeft: 12,
+                    marginRight: 12,
                     borderRadius: 8,
                     overflow: 'hidden',
                     justifyContent: 'center',
@@ -80,6 +98,10 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
               );
             })}
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Fingerprint')}>
+            <Text style={styles.fingerprint}>use fingerprint</Text>
+          </TouchableOpacity>
+
           <View>
             <TextInput
               ref={textInputRef}
@@ -93,14 +115,14 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
             />
           </View>
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => checkPinReady()}
           style={styles.buttonStyle}>
           <Text style={styles.buttonTextStyle}>next</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </ScrollView>
   );
 };
 
-export default PasscodeScreen;
+export default MainPasscodeScreen;

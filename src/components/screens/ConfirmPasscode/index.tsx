@@ -15,7 +15,7 @@ export type Props = {
   navigation: any;
 };
 
-const PasscodeScreen: React.FC<Props> = ({navigation}) => {
+const ConfirmPasscodeScreen: React.FC<Props> = ({navigation}) => {
   const [code, setCode] = useState('');
   const textInputRef = useRef(null);
   const [pinReady, setPinReady] = useState(false);
@@ -38,7 +38,7 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
 
   const checkPinReady = () => {
     if (code.length === MAX_LENGTH) {
-      navigation.navigate('ConfirmPasscode');
+      navigation.navigate('GoogleDrive');
     } else {
       Alert.alert('Enter passcode');
     }
@@ -47,9 +47,7 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.heading}>
-            choose a passcode to protect your wallet on this device
-          </Text>
+          <Text style={styles.heading}>re-enter the same passcode</Text>
           <TouchableOpacity
             onPress={() => handleOnPress()}
             onBlur={() => handleOnPress()}
@@ -103,4 +101,4 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
   );
 };
 
-export default PasscodeScreen;
+export default ConfirmPasscodeScreen;

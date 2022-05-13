@@ -22,7 +22,7 @@ const GoogleDriveScreen: React.FC<Props> = ({navigation}) => {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Wallet')}
+          onPress={() => navigation.navigate('MainPasscode')}
           style={styles.buttonStyle}>
           <Text style={styles.buttonTextStyle}>enable now</Text>
         </TouchableOpacity>

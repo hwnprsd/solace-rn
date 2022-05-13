@@ -77,24 +77,26 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
       <View style={styles.headingContainer}>
         <Text style={styles.price}>$0.04</Text>
         <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.buttonContainer}>
             <View style={styles.iconBackground}>
               <AntDesign name="arrowup" size={20} color="black" />
             </View>
             <Text style={styles.buttonText}>send</Text>
-          </View>
-          <View style={styles.buttonContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer}>
             <View style={styles.iconBackground}>
               <AntDesign name="arrowdown" size={20} color="black" />
             </View>
             <Text style={styles.buttonText}>recieve</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.walletContainer}>
         <View style={styles.walletHeader}>
           <Text style={styles.heading}>wallet activity</Text>
-          <Text style={styles.sideHeading}>see more</Text>
+          <TouchableOpacity>
+            <Text style={styles.sideHeading}>see more</Text>
+          </TouchableOpacity>
         </View>
         <ScrollView>
           {DATA.map((item: any) => {
