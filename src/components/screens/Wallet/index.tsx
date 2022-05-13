@@ -10,6 +10,7 @@ import React from 'react';
 import styles from './styles';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Transaction from '../../wallet/Transaction';
 
 export type Props = {
@@ -82,6 +83,16 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
               <AntDesign name="arrowup" size={20} color="black" />
             </View>
             <Text style={styles.buttonText}>send</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <View style={styles.iconBackground}>
+              <MaterialCommunityIcons
+                name="line-scan"
+                size={20}
+                color="black"
+              />
+            </View>
+            <Text style={styles.buttonText}>scan</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer}>
             <View style={styles.iconBackground}>

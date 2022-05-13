@@ -18,7 +18,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Fingerprint"
+        initialRouteName="Passcode"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Email" component={EmailScreen} />

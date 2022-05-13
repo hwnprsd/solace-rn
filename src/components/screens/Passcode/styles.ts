@@ -27,6 +27,21 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'Poppins-SemiBold',
   },
+  passcodeContainer: {
+    flexDirection: 'row',
+    marginTop: 50,
+    justifyContent: 'center',
+  },
+  passcode: {
+    width: 14,
+    height: 14,
+    marginLeft: 16,
+    marginRight: 16,
+    borderRadius: 8,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   buttonStyle: {
     width: '90%',
     padding: 16,

@@ -4,8 +4,6 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  TextInputComponent,
-  Pressable,
   Alert,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
@@ -18,20 +16,16 @@ export type Props = {
 const PasscodeScreen: React.FC<Props> = ({navigation}) => {
   const [code, setCode] = useState('');
   const textInputRef = useRef(null);
-  const [pinReady, setPinReady] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const MAX_LENGTH = 5;
 
   const tempArray = new Array(MAX_LENGTH).fill(0);
 
   const handleOnPress = () => {
-    setIsFocused(true);
     const textInput = textInputRef.current! as TextInput;
     textInput.focus();
   };
 
   useEffect(() => {
-    setIsFocused(true);
     const textInput = textInputRef.current! as TextInput;
     textInput.focus();
   }, []);
@@ -53,30 +47,19 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             onPress={() => handleOnPress()}
             onBlur={() => handleOnPress()}
-            style={{
-              flexDirection: 'row',
-              marginTop: 50,
-              justifyContent: 'center',
-            }}>
+            style={styles.passcodeContainer}>
             {tempArray.map((_, index) => {
-              const digit = code[index] || ' ';
               const isComplete = code.length - index > 0;
               return (
                 <View
                   key={index}
-                  style={{
-                    width: 16,
-                    height: 16,
-                    marginRight: 24,
-                    borderRadius: 8,
-                    overflow: 'hidden',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: isComplete ? 'white' : '#9999A5',
-                  }}
+                  style={[
+                    styles.passcode,
+                    {
+                      backgroundColor: isComplete ? 'white' : '#9999A5',
+                    },
+                  ]}
                 />
-                // {/* <Text style={{color: 'black'}}>{digit}</Text> */}
-                // </View>
               );
             })}
           </TouchableOpacity>

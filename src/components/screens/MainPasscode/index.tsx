@@ -76,16 +76,15 @@ const MainPasscodeScreen: React.FC<Props> = ({navigation}) => {
               justifyContent: 'center',
             }}>
             {tempArray.map((_, index) => {
-              const digit = code[index] || ' ';
               const isComplete = code.length - index > 0;
               return (
                 <View
                   key={index}
                   style={{
-                    width: 16,
-                    height: 16,
-                    marginLeft: 12,
-                    marginRight: 12,
+                    width: 14,
+                    height: 14,
+                    marginLeft: 16,
+                    marginRight: 16,
                     borderRadius: 8,
                     overflow: 'hidden',
                     justifyContent: 'center',
@@ -93,8 +92,6 @@ const MainPasscodeScreen: React.FC<Props> = ({navigation}) => {
                     backgroundColor: isComplete ? 'white' : '#9999A5',
                   }}
                 />
-                // {/* <Text style={{color: 'black'}}>{digit}</Text> */}
-                // </View>
               );
             })}
           </TouchableOpacity>

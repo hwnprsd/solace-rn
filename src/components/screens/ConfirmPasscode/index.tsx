@@ -63,9 +63,10 @@ const ConfirmPasscodeScreen: React.FC<Props> = ({navigation}) => {
                 <View
                   key={index}
                   style={{
-                    width: 16,
-                    height: 16,
-                    marginRight: 24,
+                    width: 14,
+                    height: 14,
+                    marginLeft: 16,
+                    marginRight: 16,
                     borderRadius: 8,
                     overflow: 'hidden',
                     justifyContent: 'center',

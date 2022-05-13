@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
-    width: '60%',
+    width: '70%',
     flexDirection: 'row',
     marginTop: 10,
     justifyContent: 'space-between',
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     marginTop: 12,
+    fontFamily: 'SpaceMono-Regular',
   },
   walletContainer: {
     flex: 1,

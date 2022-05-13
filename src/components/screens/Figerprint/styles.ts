@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     marginBottom: 20,
-    backgroundColor: 'white',
     resizeMode: 'contain',
   },
   username: {

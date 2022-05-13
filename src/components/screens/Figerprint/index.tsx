@@ -29,7 +29,7 @@ const FingerprintScreen: React.FC<Props> = ({navigation}) => {
         </View>
         <View style={styles.textContainer}>
           <Image
-            source={require('../../../../assets/images/solace/fingerprint.png')}
+            source={require('../../../../assets/images/solace/light-fingerprint.png')}
             style={styles.fingerprint}
           />
           <Text style={styles.heading}>unlock with fingerprint</Text>
