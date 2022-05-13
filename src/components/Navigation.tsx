@@ -12,13 +12,14 @@ import PasscodeScreen from './screens/Passcode';
 import ConfirmPasscodeScreen from './screens/ConfirmPasscode';
 import MainPasscodeScreen from './screens/MainPasscode';
 import FingerprintScreen from './screens/Figerprint';
+import SendScreen from './screens/Wallet/Send';
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Send"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Email" component={EmailScreen} />
@@ -34,6 +35,7 @@ const Navigation = () => {
         <Stack.Screen name="MainPasscode" component={MainPasscodeScreen} />
         <Stack.Screen name="Fingerprint" component={FingerprintScreen} />
         <Stack.Screen name="Wallet" component={WalletScreen} />
+        <Stack.Screen name="Send" component={SendScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

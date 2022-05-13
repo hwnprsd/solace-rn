@@ -1,9 +1,15 @@
 import React from 'react';
 import Navigation from './src/components/Navigation';
+import GlobalProvider from './src/state/contexts/GlobalContext';
+import GlobalContext from './src/state/contexts/GlobalContext';
 
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
-  return <Navigation />;
+  return (
+    <GlobalProvider>
+      <Navigation />
+    </GlobalProvider>
+  );
 };
 
 export default App;
