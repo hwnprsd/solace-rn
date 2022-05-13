@@ -18,19 +18,19 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Passcode"
+        initialRouteName="Home"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Email" component={EmailScreen} />
         <Stack.Screen name="CheckMail" component={CheckMailScreen} />
-        <Stack.Screen name="Phone" component={PhoneScreen} />
+        {/* <Stack.Screen name="Phone" component={PhoneScreen} /> */}
         <Stack.Screen name="Username" component={UsernameScreen} />
         <Stack.Screen name="Passcode" component={PasscodeScreen} />
         <Stack.Screen
           name="ConfirmPasscode"
           component={ConfirmPasscodeScreen}
         />
-        <Stack.Screen name="GoogleDrive" component={GoogleDriveScreen} />
+        {/* <Stack.Screen name="GoogleDrive" component={GoogleDriveScreen} /> */}
         <Stack.Screen name="MainPasscode" component={MainPasscodeScreen} />
         <Stack.Screen name="Fingerprint" component={FingerprintScreen} />
         <Stack.Screen name="Wallet" component={WalletScreen} />

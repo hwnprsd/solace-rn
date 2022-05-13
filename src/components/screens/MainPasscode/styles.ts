@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     flex: 1,
   },
+  passcodeContainer: {
+    flexDirection: 'row',
+    marginTop: 50,
+    justifyContent: 'center',
+  },
   headingContainer: {
     flex: 0.5,
     width: '80%',
@@ -74,6 +79,16 @@ const styles = StyleSheet.create({
     marginTop: 50,
     fontFamily: 'SpaceMono-Bold',
     textAlign: 'center',
+  },
+  passcode: {
+    width: 14,
+    height: 14,
+    marginLeft: 16,
+    marginRight: 16,
+    borderRadius: 8,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

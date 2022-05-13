@@ -70,27 +70,18 @@ const MainPasscodeScreen: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             onPress={() => handleOnPress()}
             onBlur={() => handleOnPress()}
-            style={{
-              flexDirection: 'row',
-              marginTop: 50,
-              justifyContent: 'center',
-            }}>
+            style={styles.passcodeContainer}>
             {tempArray.map((_, index) => {
               const isComplete = code.length - index > 0;
               return (
                 <View
                   key={index}
-                  style={{
-                    width: 14,
-                    height: 14,
-                    marginLeft: 16,
-                    marginRight: 16,
-                    borderRadius: 8,
-                    overflow: 'hidden',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: isComplete ? 'white' : '#9999A5',
-                  }}
+                  style={[
+                    styles.passcode,
+                    {
+                      backgroundColor: isComplete ? 'white' : '#9999A5',
+                    },
+                  ]}
                 />
               );
             })}

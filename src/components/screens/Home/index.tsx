@@ -2,6 +2,7 @@ import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import React from 'react';
 import styles from './styles';
 // import * as solana from '@solana/web3.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type Props = {
   navigation: any;
@@ -9,6 +10,13 @@ export type Props = {
 
 const HomeScreen: React.FC<Props> = ({navigation}) => {
   // console.log(solana);
+  const getData = async () => {
+    const data = await AsyncStorage.getItem('passcode');
+    console.log('DATA: ', data);
+  };
+
+  getData();
+
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>

@@ -29,6 +29,8 @@ const EmailScreen: React.FC<Props> = ({navigation}) => {
             placeholderTextColor="#fff6"
             value={text}
             onChangeText={setText}
+            autoCapitalize={'none'}
+            autoCorrect={false}
           />
         </View>
         <TouchableOpacity

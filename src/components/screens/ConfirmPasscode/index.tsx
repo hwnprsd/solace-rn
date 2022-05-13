@@ -38,7 +38,7 @@ const ConfirmPasscodeScreen: React.FC<Props> = ({navigation}) => {
 
   const checkPinReady = () => {
     if (code.length === MAX_LENGTH) {
-      navigation.navigate('GoogleDrive');
+      navigation.navigate('Wallet');
     } else {
       Alert.alert('Enter passcode');
     }

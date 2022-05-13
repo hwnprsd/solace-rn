@@ -25,7 +25,7 @@ const PhoneScreen: React.FC<Props> = ({navigation}) => {
           </Text>
           <TextInput
             style={styles.textInput}
-            placeholder="XXXXX XXXXX"
+            placeholder="----- -----"
             placeholderTextColor="#fff6"
             value={text}
             onChangeText={setText}

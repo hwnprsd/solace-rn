@@ -30,13 +30,14 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
     textInput.focus();
   }, []);
 
-  const checkPinReady = () => {
+  const checkPinReady = async () => {
     if (code.length === MAX_LENGTH) {
       navigation.navigate('ConfirmPasscode');
     } else {
       Alert.alert('Enter passcode');
     }
   };
+
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>

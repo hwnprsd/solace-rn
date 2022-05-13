@@ -21,7 +21,7 @@ const CheckMailScreen: React.FC<Props> = ({navigation}) => {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Phone')}
+          onPress={() => navigation.navigate('Username')}
           style={styles.buttonStyle}>
           <Text style={styles.buttonTextStyle}>open mail app</Text>
         </TouchableOpacity>
