@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 20,
     width: '90%',
+    justifyContent: 'space-between',
   },
+  leftHeader: {flexDirection: 'row', alignItems: 'center'},
+  rightHeader: {},
   inputContainer: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',

@@ -23,10 +23,17 @@ const SendScreen: React.FC<Props> = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <AntDesign name="back" style={styles.icon} />
-        </TouchableOpacity>
-        <Text style={styles.mainText}>send</Text>
+        <View style={styles.leftHeader}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <AntDesign name="back" style={styles.icon} />
+          </TouchableOpacity>
+          <Text style={styles.mainText}>send</Text>
+        </View>
+        <View style={styles.rightHeader}>
+          <TouchableOpacity onPress={() => navigation.navigate('AddContact')}>
+            <AntDesign name="plus" style={styles.icon} />
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.inputContainer}>
         <AntDesign name="search1" style={styles.searchIcon} />
