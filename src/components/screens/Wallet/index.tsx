@@ -6,6 +6,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import styles from './styles';
 import {GlobalContext} from '../../../state/contexts/GlobalContext';
 import {changeUserName} from '../../../state/actions/global';
+import AssetScreen from './Asset';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type Props = {
   navigation: any;
@@ -100,7 +102,9 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
             </View>
             <Text style={styles.buttonText}>scan</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => AsyncStorage.removeItem('user')}>
             <View style={styles.iconBackground}>
               <AntDesign name="arrowdown" size={20} color="black" />
             </View>
