@@ -1,8 +1,23 @@
 import {Contact} from '../../components/wallet/ContactItem';
+import {AccountStatus} from '../contexts/GlobalContext';
 
 export const setUser = (user: any) => {
   return {
     type: 'SET_USER',
+    payload: user,
+  };
+};
+
+export const setAccountStatus = (status: AccountStatus) => {
+  return {
+    type: 'SET_ACCOUNT_STATUS',
+    payload: status,
+  };
+};
+
+export const setOnboardingUser = (user: any) => {
+  return {
+    type: 'SET_ONBOARDING_USER',
     payload: user,
   };
 };

@@ -5,15 +5,39 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './styles';
+import {GlobalContext} from '../../../state/contexts/GlobalContext';
+import {setOnboardingUser} from '../../../state/actions/global';
 
 export type Props = {
   navigation: any;
 };
 
 const EmailScreen: React.FC<Props> = ({navigation}) => {
-  const [text, setText] = useState('');
+  const [email, setEmail] = useState('ankitn1311@gmail.com');
+  const [isValid, setIsValid] = useState(false);
+
+  const {state, dispatch} = useContext(GlobalContext);
+
+  const validate = (text: string) => {
+    console.log(text);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(text) === false) {
+      console.log('Email is Not Correct');
+      setEmail(text);
+      setIsValid(false);
+      return false;
+    } else {
+      setEmail(text);
+      setIsValid(true);
+      console.log('Email is Correct');
+    }
+  };
+
+  const handleMailSubmit = () => {
+    dispatch(setOnboardingUser({...state.onboardingUser, email}));
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
@@ -27,16 +51,26 @@ const EmailScreen: React.FC<Props> = ({navigation}) => {
             style={styles.textInput}
             placeholder="email address"
             placeholderTextColor="#fff6"
-            value={text}
-            onChangeText={setText}
+            value={email}
+            onChangeText={text => validate(text)}
             autoCapitalize={'none'}
             autoCorrect={false}
           />
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('CheckMail')}
+          disabled={!isValid}
+          onPress={() => {
+            handleMailSubmit();
+            navigation.navigate('Username');
+          }}
           style={styles.buttonStyle}>
-          <Text style={styles.buttonTextStyle}>next</Text>
+          <Text
+            style={[
+              styles.buttonTextStyle,
+              {color: isValid ? 'black' : '#9999a5'},
+            ]}>
+            next
+          </Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

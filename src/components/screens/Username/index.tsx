@@ -5,19 +5,31 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {GlobalContext} from '../../../state/contexts/GlobalContext';
+import {setOnboardingUser, setUser} from '../../../state/actions/global';
 
 export type Props = {
   navigation: any;
 };
 
 const UsernameScreen: React.FC<Props> = ({navigation}) => {
-  const [text, setText] = useState('');
+  const [username, setUsername] = useState('');
   const [borderColor, setBorderColor] = useState('#fff3');
   const [infoText, setInfoText] = useState('your username will be public');
 
+  const {state, dispatch} = useContext(GlobalContext);
+
+  const handleUsernameSubmit = () => {
+    dispatch(setOnboardingUser({...state.onboardingUser, username}));
+    navigation.navigate('Passcode');
+  };
+
+  const handleChange = (text: string) => {
+    setUsername(text);
+  };
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.container}>
@@ -30,12 +42,12 @@ const UsernameScreen: React.FC<Props> = ({navigation}) => {
             style={[styles.textInput, {borderColor}]}
             placeholder="username"
             placeholderTextColor="#fff6"
-            value={text}
+            value={username}
             autoCorrect={false}
             autoCapitalize={'none'}
             onFocus={() => setBorderColor('#fff6')}
             onBlur={() => setBorderColor('#fff3')}
-            onChangeText={setText}
+            onChangeText={text => handleChange(text)}
           />
           <View style={styles.subTextContainer}>
             <AntDesign name="infocirlceo" style={styles.subIcon} />
@@ -43,7 +55,9 @@ const UsernameScreen: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Passcode')}
+          onPress={() => {
+            handleUsernameSubmit();
+          }}
           style={styles.buttonStyle}>
           <Text style={styles.buttonTextStyle}>next</Text>
         </TouchableOpacity>

@@ -74,7 +74,7 @@ const Guardian: React.FC<Props> = ({navigation}) => {
 
       <View style={styles.endContainer}>
         <TouchableOpacity
-          // onPress={() => addContact()}
+          onPress={() => navigation.navigate('AddGuardian')}
           style={styles.buttonStyle}>
           <Text style={styles.buttonTextStyle}>add guardian</Text>
         </TouchableOpacity>

@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {GlobalContext} from '../state/contexts/GlobalContext';
+import {AccountStatus, GlobalContext} from '../state/contexts/GlobalContext';
 import AuthStack from './Auth';
 import WalletStack from './Wallet';
 import OnboardingStack from './Onboarding';
@@ -9,14 +9,14 @@ const Navigation = () => {
   const {state} = useContext(GlobalContext);
 
   const renderContent = () => {
-    if (state.onboarded) {
-      if (state.user) {
-        return <WalletStack />;
-      } else {
+    switch (state.accountStatus) {
+      case AccountStatus.NEW:
+        return <OnboardingStack />;
+      case AccountStatus.EXISITING:
         return <AuthStack />;
-      }
+      case AccountStatus.ACTIVE:
+        return <WalletStack />;
     }
-    return <OnboardingStack />;
   };
 
   return <NavigationContainer>{renderContent()}</NavigationContainer>;

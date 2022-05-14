@@ -9,8 +9,19 @@ import {
   Alert,
   Image,
 } from 'react-native';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import styles from './styles';
+import {
+  AccountStatus,
+  GlobalContext,
+} from '../../../state/contexts/GlobalContext';
+import {setAccountStatus} from '../../../state/actions/global';
 
 export type Props = {
   navigation: any;
@@ -22,6 +33,8 @@ const MainPasscodeScreen: React.FC<Props> = ({navigation}) => {
   const [pinReady, setPinReady] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const MAX_LENGTH = 5;
+
+  const {state, dispatch} = useContext(GlobalContext);
 
   const tempArray = new Array(MAX_LENGTH).fill(0);
 
@@ -41,15 +54,16 @@ const MainPasscodeScreen: React.FC<Props> = ({navigation}) => {
 
   const checkPinReady = useCallback(() => {
     if (code.length === MAX_LENGTH) {
-      if (code === '12345') {
-        navigation.navigate('Wallet');
+      const realPasscode = state.user?.passcode;
+      if (code === realPasscode) {
+        dispatch(setAccountStatus(AccountStatus.ACTIVE));
       } else {
         Alert.alert('incorret passcode');
         setCode('');
         focusMainInput();
       }
     }
-  }, [code, navigation]);
+  }, [code, state.user?.passcode, dispatch]);
 
   useEffect(() => {
     checkPinReady();

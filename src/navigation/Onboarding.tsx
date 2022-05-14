@@ -15,7 +15,6 @@ const OnboardingStack = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Email" component={EmailScreen} />
-      <Stack.Screen name="CheckMail" component={CheckMailScreen} />
       <Stack.Screen name="Username" component={UsernameScreen} />
       <Stack.Screen name="Passcode" component={PasscodeScreen} />
       <Stack.Screen name="ConfirmPasscode" component={ConfirmPasscodeScreen} />

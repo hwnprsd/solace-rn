@@ -36,7 +36,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
             onPress={() => navigation.navigate('Email')}
             style={[styles.buttonStyle, styles.secondButton]}>
             <Text style={[styles.buttonTextStyle, styles.secondButtonText]}>
-              i have a solace wallet
+              recover your wallet
             </Text>
           </TouchableOpacity>
         </View>

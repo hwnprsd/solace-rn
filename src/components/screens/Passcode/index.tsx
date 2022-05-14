@@ -6,8 +6,10 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import styles from './styles';
+import {GlobalContext} from '../../../state/contexts/GlobalContext';
+import {setOnboardingUser} from '../../../state/actions/global';
 
 export type Props = {
   navigation: any;
@@ -30,8 +32,11 @@ const PasscodeScreen: React.FC<Props> = ({navigation}) => {
     textInput.focus();
   }, []);
 
+  const {state, dispatch} = useContext(GlobalContext);
+
   const checkPinReady = async () => {
     if (code.length === MAX_LENGTH) {
+      dispatch(setOnboardingUser({...state.onboardingUser, passcode: code}));
       navigation.navigate('ConfirmPasscode');
     } else {
       Alert.alert('Enter passcode');
