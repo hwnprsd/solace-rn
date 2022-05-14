@@ -5,11 +5,11 @@
  * @format
  */
 
-const {getDefaultConfig} = require('metro-config');
+const { getDefaultConfig } = require('metro-config');
 
 module.exports = (async () => {
   const {
-    resolver: {sourceExts},
+    resolver: { sourceExts },
   } = await getDefaultConfig();
 
   return {
@@ -22,7 +22,7 @@ module.exports = (async () => {
       }),
     },
     resolver: {
-      sourceExts: [...sourceExts, 'cjs', 'mjs'],
+      sourceExts: [...sourceExts, 'cjs', 'mjs', 'jsx', 'js', 'ts', 'tsx'],
     },
   };
 })();

@@ -1,5 +1,8 @@
-import {Contact} from '../../components/wallet/ContactItem';
-import {AccountStatus} from '../contexts/GlobalContext';
+import { Contact } from '../../components/wallet/ContactItem';
+import { AccountStatus } from '../contexts/GlobalContext';
+import * as anchor from "../../@project-serum/anchor"
+import { Solace } from '../../solace-sdk/solace/types';
+import { SolaceSDK } from '../../solace-sdk/sdk';
 
 export const setUser = (user: any) => {
   return {
@@ -14,6 +17,20 @@ export const setAccountStatus = (status: AccountStatus) => {
     payload: status,
   };
 };
+
+export const setUserProgram = (program: anchor.Program<Solace>) => {
+  return {
+    type: 'SET_PROGRAM',
+    payload: program
+  }
+}
+
+export const setSolaceObj = (sol: SolaceSDK) => {
+  return {
+    type: 'SET_SOLACE',
+    payload: sol
+  }
+}
 
 export const setOnboardingUser = (user: any) => {
   return {

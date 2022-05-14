@@ -1,7 +1,7 @@
-import {AccountStatus} from '../contexts/GlobalContext';
+import { AccountStatus } from '../contexts/GlobalContext';
 
-const reducer = (state: any, action: {type: string; payload: any}) => {
-  const {type, payload} = action;
+const reducer = (state: any, action: { type: string; payload: any }) => {
+  const { type, payload } = action;
   switch (type) {
     case 'SET_USER':
       return {
@@ -19,9 +19,9 @@ const reducer = (state: any, action: {type: string; payload: any}) => {
         onboardingUser: payload,
       };
     case 'CHANGE_NAME':
-      return {...state, username: action.payload};
+      return { ...state, username: action.payload };
     case 'ADD_CONTACT':
-      return {...state, contacts: [...state.contacts, action.payload]};
+      return { ...state, contacts: [...state.contacts, action.payload] };
     case 'GET_CONTACT':
       return {
         ...state,
@@ -29,6 +29,18 @@ const reducer = (state: any, action: {type: string; payload: any}) => {
           (contact: any) => contact.id === action.payload,
         ),
       };
+    case 'SET_PROGRAM': {
+      return {
+        ...state,
+        program: payload
+      }
+    };
+    case 'SET_SOLACE': {
+      return {
+        ...state,
+        solObj: payload
+      }
+    }
     default:
       return state;
   }

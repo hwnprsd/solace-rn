@@ -1,14 +1,17 @@
-import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
+
 import React from 'react';
 import styles from './styles';
 // import * as solana from '@solana/web3.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+
+
 export type Props = {
   navigation: any;
 };
 
-const HomeScreen: React.FC<Props> = ({navigation}) => {
+const HomeScreen: React.FC<Props> = ({ navigation }) => {
   // console.log(solana);
   const getData = async () => {
     const data = await AsyncStorage.getItem('passcode');

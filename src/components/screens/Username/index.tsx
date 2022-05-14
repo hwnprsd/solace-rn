@@ -1,3 +1,7 @@
+import React, { useContext, useState } from 'react';
+
+
+import styles from './styles';
 import {
   View,
   Text,
@@ -5,25 +9,41 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import React, {useContext, useState} from 'react';
-import styles from './styles';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {GlobalContext} from '../../../state/contexts/GlobalContext';
-import {setOnboardingUser, setUser} from '../../../state/actions/global';
+import { GlobalContext } from '../../../state/contexts/GlobalContext';
+import { setOnboardingUser, setUser } from '../../../state/actions/global';
+import { Keypair } from '@solana/web3.js';
 
 export type Props = {
   navigation: any;
 };
 
-const UsernameScreen: React.FC<Props> = ({navigation}) => {
+const UsernameScreen: React.FC<Props> = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [borderColor, setBorderColor] = useState('#fff3');
   const [infoText, setInfoText] = useState('your username will be public');
 
-  const {state, dispatch} = useContext(GlobalContext);
+  const { state, dispatch } = useContext(GlobalContext);
 
-  const handleUsernameSubmit = () => {
-    dispatch(setOnboardingUser({...state.onboardingUser, username}));
+
+  const handleUsernameSubmit = async () => {
+    dispatch(setOnboardingUser({ ...state.onboardingUser, username }));
+    if (state.solObj) {
+      if (state.user?.keyPair !== undefined) {
+        // const owner = Keypair.fromSecretKey(Buffer.from(state.user?.keyPair))
+        const owner = Keypair.generate()
+        try {
+          await state.solObj.createWalletWithName(owner, username)
+
+        } catch (err) {
+          console.log(err)
+        }
+        // console.log(state.solObj.seed.toString())
+        //  dispatch(setUser(state.solObj.seed.toString()))
+        //  dispatch(setOnboardingUser({...state.onboardingUser, state.solObj.seed.toString()}));
+
+      }
+
+    }
     navigation.navigate('Passcode');
   };
 
@@ -39,7 +59,7 @@ const UsernameScreen: React.FC<Props> = ({navigation}) => {
             choose a username that others can use to send you money
           </Text>
           <TextInput
-            style={[styles.textInput, {borderColor}]}
+            style={[styles.textInput, { borderColor }]}
             placeholder="username"
             placeholderTextColor="#fff6"
             value={username}
@@ -50,7 +70,7 @@ const UsernameScreen: React.FC<Props> = ({navigation}) => {
             onChangeText={text => handleChange(text)}
           />
           <View style={styles.subTextContainer}>
-            <AntDesign name="infocirlceo" style={styles.subIcon} />
+            {/* <AntDesign name="infocirlceo" style={styles.subIcon} /> */}
             <Text style={styles.subText}>{infoText}</Text>
           </View>
         </View>
