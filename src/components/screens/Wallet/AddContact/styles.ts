@@ -26,17 +26,6 @@ const styles = StyleSheet.create({
     width: 40,
     overflow: 'hidden',
     marginRight: 20,
-    // backgroundColor: '#3d3d3d',
-  },
-  giftIcon: {
-    color: 'white',
-    fontSize: 24,
-    padding: 8,
-    borderRadius: 20,
-    alignSelf: 'flex-start',
-    width: 40,
-    overflow: 'hidden',
-    marginRight: 6,
   },
   headingContainer: {
     flex: 0.5,
@@ -44,26 +33,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {
-    height: 35,
-    resizeMode: 'contain',
-    overflow: 'hidden',
-  },
   mainText: {
     color: 'white',
     fontFamily: 'Poppins-SemiBold',
     fontSize: 24,
-  },
-  price: {
-    color: 'white',
-    fontFamily: 'Poppins-Bold',
-    fontSize: 28,
-  },
-  username: {
-    color: 'white',
-    fontFamily: 'Poppins-SemiBold',
-    marginTop: 8,
-    fontSize: 18,
   },
   buttonsContainer: {
     flex: 1,
@@ -92,6 +65,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 12,
     fontFamily: 'SpaceMono-Regular',
+  },
+  secondText: {
+    color: '#9999A5',
+    fontFamily: 'SpaceMono-Bold',
+    fontSize: 16,
   },
   sendContainer: {
     flex: 1,
@@ -134,28 +112,51 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     color: 'white',
     padding: 14,
-    paddingLeft: 40,
     borderWidth: 1,
     fontFamily: 'SpaceMono-Bold',
   },
-  sendGiftContainer: {
-    flexDirection: 'row',
-    marginTop: 8,
-  },
+  textInputAddress: {paddingRight: 40},
   inputWrap: {
+    marginTop: 20,
     width: '100%',
     position: 'relative',
   },
-  searchIcon: {
+  scanIcon: {
     position: 'absolute',
     color: '#9999a5',
     fontSize: 18,
+    right: 16,
     top: 16,
-    left: 16,
   },
-  contactContainer: {
+  networkContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    width: '85%',
+  },
+  solanaText: {
+    color: '#14f195',
+    fontFamily: 'SpaceMono-Bold',
+    fontSize: 16,
+  },
+  buttonStyle: {
+    marginVertical: 24,
+    width: '100%',
+    padding: 16,
+    justifyContent: 'flex-end',
+    backgroundColor: 'white',
+  },
+  endContainer: {
+    flex: 1,
     width: '90%',
-    margin: 20,
+    justifyContent: 'flex-end',
+  },
+  buttonTextStyle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+    fontFamily: 'SpaceMono-Bold',
+    textTransform: 'lowercase',
   },
 });
 

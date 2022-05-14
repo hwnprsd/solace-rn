@@ -6,16 +6,20 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './styles';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {GlobalContext} from '../../../../state/contexts/GlobalContext';
+import Contact from '../../../wallet/Contact';
 
 export type Props = {
   navigation: any;
 };
 
 const SendScreen: React.FC<Props> = ({navigation}) => {
+  const {state, dispatch} = useContext(GlobalContext);
+
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
       <View style={styles.headerContainer}>
@@ -41,18 +45,29 @@ const SendScreen: React.FC<Props> = ({navigation}) => {
           <Text style={styles.buttonText}>send a gift</Text>
         </View>
       </View>
-      <View style={styles.sendContainer}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={require('../../../../../assets/images/solace/send-money.png')}
-            style={styles.contactImage}
-          />
-          <Text style={styles.buttonText}>
-            <Text style={styles.secondaryText}>add a contact</Text> to send to
-            Solace or Solana addresses
-          </Text>
+      {state.contacts.length > 0 ? (
+        <View style={styles.contactContainer}>
+          {state.contacts.map((contact, index) => {
+            return <Contact contact={contact} key={contact.username} />;
+          })}
         </View>
-      </View>
+      ) : (
+        <View style={styles.sendContainer}>
+          <View style={styles.imageContainer}>
+            <Image
+              source={require('../../../../../assets/images/solace/send-money.png')}
+              style={styles.contactImage}
+            />
+            <Text style={styles.buttonText}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('AddContact')}>
+                <Text style={styles.secondaryText}>add a contact</Text>
+              </TouchableOpacity>{' '}
+              to send to Solace or Solana addresses
+            </Text>
+          </View>
+        </View>
+      )}
     </ScrollView>
   );
 };

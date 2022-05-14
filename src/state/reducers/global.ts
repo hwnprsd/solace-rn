@@ -7,6 +7,8 @@ const reducer = (state: any, action: {type: string; payload: any}) => {
       };
     case 'CHANGE_NAME':
       return {...state, username: action.payload};
+    case 'ADD_CONTACT':
+      return {...state, contacts: [...state.contacts, action.payload]};
     default:
       return state;
   }

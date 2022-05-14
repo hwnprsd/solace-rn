@@ -4,11 +4,24 @@ import globalReducer from '../reducers/global';
 type InitialStateType = {
   user: boolean;
   username: string;
+  contacts: {name: string; username: string; address: string}[];
 };
 
 const initialState = {
   user: true,
   username: 'rahul',
+  contacts: [
+    {
+      name: 'ashwin prasad',
+      username: 'ashwin.solace.money',
+      address: '1231jkajsdkf02198487',
+    },
+    {
+      name: 'sarthak sharma',
+      username: 'sarthak.solace.money',
+      address: 'alkjsdfoi1093890123909',
+    },
+  ],
 };
 
 export const GlobalContext = createContext<{
