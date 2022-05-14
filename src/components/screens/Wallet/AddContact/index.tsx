@@ -27,6 +27,7 @@ const AddContactScreen: React.FC<Props> = ({navigation}) => {
   const addContact = () => {
     if (name && address) {
       const newContact = {
+        id: new Date().getTime().toString() + Math.random().toString(),
         name,
         address,
         username: `${name.split(' ')[0]}.solace.money`,
@@ -77,8 +78,12 @@ const AddContactScreen: React.FC<Props> = ({navigation}) => {
       </View>
       <View style={styles.endContainer}>
         <TouchableOpacity
+          disabled={!name || !address}
           onPress={() => addContact()}
-          style={styles.buttonStyle}>
+          style={[
+            styles.buttonStyle,
+            {backgroundColor: !name || !address ? 'lightgray' : 'white'},
+          ]}>
           <Text style={styles.buttonTextStyle}>save contact</Text>
         </TouchableOpacity>
       </View>

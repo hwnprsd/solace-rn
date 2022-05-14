@@ -11,7 +11,7 @@ import styles from './styles';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {GlobalContext} from '../../../../state/contexts/GlobalContext';
-import Contact from '../../../wallet/Contact';
+import ContactItem from '../../../wallet/ContactItem';
 
 export type Props = {
   navigation: any;
@@ -55,7 +55,7 @@ const SendScreen: React.FC<Props> = ({navigation}) => {
       {state.contacts.length > 0 ? (
         <View style={styles.contactContainer}>
           {state.contacts.map((contact, index) => {
-            return <Contact contact={contact} key={contact.username} />;
+            return <ContactItem contact={contact} key={contact.username} />;
           })}
         </View>
       ) : (
