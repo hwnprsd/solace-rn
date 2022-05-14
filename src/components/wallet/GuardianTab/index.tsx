@@ -36,7 +36,7 @@ const GuardianTab: React.FC<Props> = ({guardians}) => {
           </View>
           <View style={styles.rightSide}>
             <TouchableOpacity>
-              <Text style={styles.acceptButton}>top to confirm</Text>
+              <Text style={styles.acceptButton}>tap to confirm</Text>
             </TouchableOpacity>
           </View>
         </View>

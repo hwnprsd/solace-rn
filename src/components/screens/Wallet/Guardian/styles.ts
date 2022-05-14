@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceMono-Bold',
     color: '#9999a5',
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 14,
   },
   mainContainer: {
     flex: 1,

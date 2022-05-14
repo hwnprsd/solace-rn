@@ -57,17 +57,14 @@ const styles = StyleSheet.create({
   securityText: {
     color: 'white',
     fontFamily: 'SpaceMono-Bold',
-    fontSize: 16,
   },
   dateText: {
     color: '#9999a5',
     fontFamily: 'SpaceMono-Bold',
-    fontSize: 16,
   },
   responseText: {
     color: '#9999a5',
     fontFamily: 'SpaceMono-Bold',
-    fontSize: 16,
   },
   guardianItem: {width: '100%'},
   leftSide: {
@@ -84,7 +81,6 @@ const styles = StyleSheet.create({
     color: '#00AC64',
     fontFamily: 'Poppins-Bold',
     letterSpacing: 0.5,
-    fontSize: 14,
   },
 });
 

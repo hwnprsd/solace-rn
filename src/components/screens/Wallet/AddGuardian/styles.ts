@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16,
     marginTop: 12,
     fontFamily: 'SpaceMono-Regular',
   },

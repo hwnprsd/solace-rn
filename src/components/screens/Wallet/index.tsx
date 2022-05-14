@@ -57,7 +57,7 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
   ];
 
   const {
-    state: {username},
+    state: {user},
     dispatch,
   } = useContext(GlobalContext);
 
@@ -77,7 +77,7 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
           source={require('../../../../assets/images/solace/solace-icon.png')}
           style={styles.image}
         />
-        <Text style={styles.username}>{username}.solace.money</Text>
+        <Text style={styles.username}>{user?.username}.solace.money</Text>
       </View>
       <View style={styles.headingContainer}>
         <Text style={styles.price}>$0.04</Text>
@@ -113,7 +113,7 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
           <Text style={styles.heading}>wallet activity</Text>
           <TouchableOpacity>
             {/* <Text style={styles.sideHeading}>see more</Text> */}
-            <Text style={styles.sideHeading}>unavailabe</Text>
+            <Text style={styles.sideHeading}>unavailable</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.imageContainer}>

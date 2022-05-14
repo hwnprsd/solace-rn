@@ -17,7 +17,7 @@ const Guardian: React.FC<Props> = ({navigation}) => {
   const {state, dispatch} = useContext(GlobalContext);
   const guardians: Contact[] = [
     {
-      name: 'John Doe',
+      name: 'john doe',
       address: '0x0',
       id: '12341235',
       username: 'john.solace.money',
@@ -58,7 +58,13 @@ const Guardian: React.FC<Props> = ({navigation}) => {
             {borderBottomColor: activeTab === 1 ? 'white' : 'transparent'},
           ]}
           onPress={() => setActiveTab(1)}>
-          <Text style={styles.tabText}>my guardians</Text>
+          <Text
+            style={[
+              styles.tabText,
+              {color: activeTab === 1 ? 'white' : '#9999a5'},
+            ]}>
+            my guardians
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -66,7 +72,13 @@ const Guardian: React.FC<Props> = ({navigation}) => {
             {borderBottomColor: activeTab === 2 ? 'white' : 'transparent'},
           ]}
           onPress={() => setActiveTab(2)}>
-          <Text style={styles.tabText}>who i protect</Text>
+          <Text
+            style={[
+              styles.tabText,
+              {color: activeTab === 2 ? 'white' : '#9999a5'},
+            ]}>
+            who i protect
+          </Text>
         </TouchableOpacity>
       </View>
 

@@ -52,9 +52,9 @@ const SendScreen: React.FC<Props> = ({navigation}) => {
           <Text style={styles.buttonText}>send a gift</Text>
         </View>
       </View>
-      {state.contacts.length > 0 ? (
+      {state?.contacts?.length! > 0 ? (
         <View style={styles.contactContainer}>
-          {state.contacts.map((contact, index) => {
+          {state?.contacts?.map((contact, index) => {
             return <ContactItem contact={contact} key={contact.username} />;
           })}
         </View>
