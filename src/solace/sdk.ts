@@ -13,12 +13,13 @@ export class SolaceSDK {
   constructor(
     private readonly apiProvider: ApiProvider,
     private readonly program: anchor.Program<Solace>,
-    private readonly owner: anchor.web3.Keypair,
+    private readonly owner?: anchor.web3.Keypair,
   ) {
     this.helper = new Utils(program);
   }
 
-  fetchWalletData = () => this.program.account.wallet.fetch(this.wallet);
+  fetchWalletData = (address: anchor.web3.PublicKey = this.wallet) =>
+    this.program.account.wallet.fetch(address);
 
   /**
    * Create a new Solace wallet
@@ -26,6 +27,7 @@ export class SolaceSDK {
    */
   async createWalletWithName(signer: anchor.web3.Keypair, name: string) {
     const seedBase = Keypair.generate();
+    if (!this.owner) return;
     const [walletAddress, walletBump] = findProgramAddressSync(
       [Buffer.from('SOLACE'), seedBase.publicKey.toBuffer()],
       this.program.programId,
@@ -57,8 +59,7 @@ export class SolaceSDK {
     console.log(`Wallet Generated`);
     console.log(walletAddress.toString());
     this.wallet = walletAddress;
-
-    // await this.apiProvider.setName(walletAddress.toString(), name);
+    await this.program.provider.connection.confirmTransaction(res);
   }
 
   /**
@@ -67,46 +68,67 @@ export class SolaceSDK {
    */
   async addGuardian(guardianPublicKey: anchor.web3.PublicKey) {
     console.log(this.wallet.toString());
-    // const walletData = await this.program.account.wallet.fetch(this.wallet);
+    const walletData = await this.program.account.wallet.fetch(this.wallet);
+    await this.program.account.wallet.fetch(this.wallet);
+    if (!this.owner) return;
 
     console.log({
       guardianPublicKey: guardianPublicKey.toString(),
       walletAddress: this.wallet.toString(),
       owner: this.owner.publicKey.toString(),
-      // walletData,
+      walletData,
     });
-    const res = await this.program.rpc.addGuardians(
-      [guardianPublicKey],
-      1,
-      {
-        accounts: {
-          wallet: this.wallet,
-          owner: this.owner.publicKey,
-        },
-        signers: [this.owner],
+    const res = await this.program.rpc.addGuardians([guardianPublicKey], 1, {
+      accounts: {
+        wallet: this.wallet,
+        owner: this.owner.publicKey,
       },
-      // walletData.approvedGuardians.length + 1,
-    );
-    console.log('TXN- ID', res);
-
-    // await this.apiProvider.addGuardian(this.owner.publicKey, guardianPublicKey);
+      signers: [this.owner],
+    });
+    await this.program.provider.connection.confirmTransaction(res);
   }
-
-  /**
-   * FOR - Guardian
-   */
-  async approveGuardianship(guardian: any) {}
 
   /**
    * FOR - User to remove a guardian
    */
-  async removeGuardian() {}
+  async removeGuardian(guardianAddress: anchor.web3.PublicKey) {}
 
   /**
-   *
+   * {
+   *  guardians: [''], -- The guardians of the user
+   *  guarding: [{address: "", isInRecovery: ""}, {...}]  -- The users, the current user is gurading
+   * }
    * @returns
    */
   async getGuardianData() {
+    if (!this.owner) return;
     return this.apiProvider.getGuardianData(this.owner.publicKey);
   }
+
+  /**
+   *
+   * @param address
+   * @returns
+   */
+  async isInRecovery(address: anchor.web3.PublicKey) {
+    return this.fetchWalletData(address);
+  }
+
+  /**
+   * Send LAMPORTS of sol
+   * @param address
+   * @param lamports
+   */
+  async sendSol(address: anchor.web3.PublicKey, lamports: number) {}
+
+  async approveRecovery(addressToRecover: anchor.web3.PublicKey) {}
+
+  async createWalletAndRequestRecovery(
+    newOwner: anchor.web3.Keypair,
+    addressToRecover: anchor.web3.PublicKey,
+  ) {}
+
+  async getAddressByName(name: string) {}
+
+  async getNameByAddress(address: anchor.web3.PublicKey) {}
 }
