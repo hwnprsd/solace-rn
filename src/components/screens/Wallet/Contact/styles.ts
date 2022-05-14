@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   container: {
-    marginTop: 30,
+    marginTop: 20,
     width: '90%',
   },
   username: {
@@ -66,6 +66,42 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   imageText: {fontFamily: 'Poppins-Bold', color: 'white'},
+  transactionContainer: {
+    flex: 1,
+    marginTop: 80,
+    width: '90%',
+  },
+  transactionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+    alignItems: 'center',
+  },
+  transactionHeading: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'Poppins-SemiBold',
+  },
+  transactionImage: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  contactImage: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+  },
+  buttonText: {
+    color: '#9999a5',
+    textAlign: 'left',
+    // marginTop: 12,
+    fontFamily: 'SpaceMono-Regular',
+  },
+  secondaryText: {
+    textDecorationLine: 'underline',
+    color: 'white',
+    fontFamily: 'SpaceMono-Bold',
+  },
 });
 
 export default styles;

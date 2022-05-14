@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import React, {useContext, useEffect} from 'react';
 import styles from './styles';
 
@@ -28,11 +28,11 @@ const ContactScreen: React.FC<Props> = ({route, navigation}) => {
       </View>
       <View style={styles.subHeadingContainer}>
         <Text style={styles.mainText}>
-          {state.contact && state.contact?.name}
+          {state.contact ? state.contact?.name : 'john doe'}
         </Text>
         <Text style={styles.editText}>edit</Text>
       </View>
-      <View style={[styles.subHeadingContainer, {marginTop: 40}]}>
+      <View style={[styles.subHeadingContainer, {marginTop: 20}]}>
         <Text style={styles.subHeadingText}>select address</Text>
       </View>
       <View style={styles.container}>
@@ -45,7 +45,7 @@ const ContactScreen: React.FC<Props> = ({route, navigation}) => {
           </View>
           <View>
             <Text style={styles.username}>
-              {state.contact && state.contact.username}
+              {state.contact ? state.contact.username : 'john.solace.money'}
             </Text>
           </View>
         </TouchableOpacity>
@@ -66,6 +66,25 @@ const ContactScreen: React.FC<Props> = ({route, navigation}) => {
             <Text style={styles.editText}>add address</Text>
           </View>
         </TouchableOpacity>
+      </View>
+      <View style={styles.transactionContainer}>
+        <View style={styles.transactionHeader}>
+          <Text style={styles.transactionHeading}>wallet activity</Text>
+        </View>
+        <View style={styles.transactionImage}>
+          <Text style={styles.buttonText}>
+            visit <Text style={styles.secondaryText}>solscan</Text> to view your
+            transaction history
+          </Text>
+          <Image
+            source={require('../../../../../assets/images/solace/contact-screen.png')}
+            style={styles.contactImage}
+          />
+          {/* <Text style={styles.buttonText}>
+            visit <Text style={styles.secondaryText}>solscan</Text> to view your
+            transaction history
+          </Text> */}
+        </View>
       </View>
     </ScrollView>
   );
