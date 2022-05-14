@@ -66,21 +66,16 @@ export const GlobalContext = createContext<{
 const GlobalProvider = ({children}: {children: any}) => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
 
-  const getInitialData = async () => {
-    console.log(state);
-    const response = await AsyncStorage.getItem('user');
-    console.log('response sdjkfajl ', response);
-    if (response) {
-      console.log('response', response);
-      const user = JSON.parse(response);
-      await dispatch(setUser(user));
-      await dispatch(setAccountStatus(AccountStatus.EXISITING));
-    } else {
-      console.log('no response', response);
-    }
-  };
-
   useEffect(() => {
+    const getInitialData = async () => {
+      const response = await AsyncStorage.getItem('user');
+      if (response) {
+        console.log('response', response);
+        const user = JSON.parse(response);
+        dispatch(setUser(user));
+        dispatch(setAccountStatus(AccountStatus.EXISITING));
+      }
+    };
     getInitialData();
   }, []);
 
