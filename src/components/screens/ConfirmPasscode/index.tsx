@@ -4,8 +4,6 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  TextInputComponent,
-  Pressable,
   Alert,
 } from 'react-native';
 import React, {useContext, useEffect, useRef, useState} from 'react';
@@ -18,7 +16,7 @@ export type Props = {
 };
 
 const ConfirmPasscodeScreen: React.FC<Props> = ({navigation}) => {
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState('12345');
   const textInputRef = useRef(null);
   const {dispatch} = useContext(GlobalContext);
   const [pinReady, setPinReady] = useState(false);

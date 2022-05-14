@@ -3,6 +3,7 @@ import {Contact} from '../../components/wallet/ContactItem';
 import globalReducer from '../reducers/global';
 
 type InitialStateType = {
+  onboarded: boolean;
   user: boolean;
   username: string;
   contact?: Contact;
@@ -10,6 +11,7 @@ type InitialStateType = {
 };
 
 const initialState = {
+  onboarded: true,
   user: true,
   username: 'rahul',
   contacts: [

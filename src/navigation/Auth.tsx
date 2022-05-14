@@ -1,24 +1,16 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../components/screens/Home';
-import EmailScreen from '../components/screens/Email';
-import CheckMailScreen from '../components/screens/CheckMail';
-import UsernameScreen from '../components/screens/Username';
-import PasscodeScreen from '../components/screens/Passcode';
-import ConfirmPasscodeScreen from '../components/screens/ConfirmPasscode';
+import FingerprintScreen from '../components/screens/Figerprint';
+import MainPasscodeScreen from '../components/screens/MainPasscode';
 
 const Stack = createNativeStackNavigator();
 const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="MainPasscode"
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Email" component={EmailScreen} />
-      <Stack.Screen name="CheckMail" component={CheckMailScreen} />
-      <Stack.Screen name="Username" component={UsernameScreen} />
-      <Stack.Screen name="Passcode" component={PasscodeScreen} />
-      <Stack.Screen name="ConfirmPasscode" component={ConfirmPasscodeScreen} />
+      <Stack.Screen name="MainPasscode" component={MainPasscodeScreen} />
+      <Stack.Screen name="Fingerprint" component={FingerprintScreen} />
     </Stack.Navigator>
   );
 };

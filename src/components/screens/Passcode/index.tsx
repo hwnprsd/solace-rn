@@ -14,7 +14,7 @@ export type Props = {
 };
 
 const PasscodeScreen: React.FC<Props> = ({navigation}) => {
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState('12345');
   const textInputRef = useRef(null);
   const MAX_LENGTH = 5;
 

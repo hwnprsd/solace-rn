@@ -4,6 +4,7 @@ const reducer = (state: any, action: {type: string; payload: any}) => {
       return {
         ...state,
         user: true,
+        onboarding: true,
       };
     case 'CHANGE_NAME':
       return {...state, username: action.payload};

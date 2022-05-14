@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     marginVertical: 20,
+    alignItems: 'center',
     width: '90%',
   },
   inputContainer: {

@@ -67,9 +67,11 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>
-      <View style={styles.iconContainer}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Guardian')}
+        style={styles.iconContainer}>
         <AntDesign name="lock" style={styles.icon} />
-      </View>
+      </TouchableOpacity>
       <View style={styles.headingContainer}>
         <Image
           source={require('../../../../assets/images/solace/solace-icon.png')}

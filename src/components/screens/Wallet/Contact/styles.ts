@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     marginVertical: 20,
+    alignItems: 'center',
     width: '90%',
   },
   icon: {
@@ -101,6 +102,10 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: 'white',
     fontFamily: 'SpaceMono-Bold',
+  },
+  image: {
+    width: 40,
+    resizeMode: 'contain',
   },
 });
 

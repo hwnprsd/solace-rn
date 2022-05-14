@@ -38,10 +38,12 @@ const ContactScreen: React.FC<Props> = ({route, navigation}) => {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.item}
-          // onPress={() => navigation.navigate('Contact', {id: contact.id})}>
-        >
+          onPress={() => navigation.navigate('Asset')}>
           <View style={styles.imageContainer}>
-            <Text style={styles.imageText}>S</Text>
+            <Image
+              source={require('../../../../../assets/images/solace/solana-icon.png')}
+              style={styles.image}
+            />
           </View>
           <View>
             <Text style={styles.username}>
