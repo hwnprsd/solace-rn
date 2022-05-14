@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 const WalletStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="AddContact"
+      initialRouteName="MainPasscode"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="MainPasscode" component={MainPasscodeScreen} />
       <Stack.Screen name="Fingerprint" component={FingerprintScreen} />
