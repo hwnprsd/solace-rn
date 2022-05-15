@@ -24,15 +24,15 @@ const Navigation = () => {
     }
   };
 
-  const renderLoading = () => {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "black" }}>
-        <Text style={{ fontSize: 20, color: "white" }}> <ActivityIndicator color={"#fff"} style={{ paddingRight: 6, paddingTop: 6 }} />  Processing, please wait</Text>
-      </View>
-    )
-  }
+  // const renderLoading = () => {
+  //   return (
+  //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "black" }}>
+  //       <Text style={{ fontSize: 20, color: "white" }}> <ActivityIndicator color={"#fff"} style={{ paddingRight: 6, paddingTop: 6 }} />Creating Wallet</Text>
+  //     </View>
+  //   )
+  // }
 
-  return <NavigationContainer>{state.isLoading ? renderLoading() : renderContent()}</NavigationContainer>;
+  return <NavigationContainer>{renderContent()}</NavigationContainer>;
 };
 
 export default Navigation;

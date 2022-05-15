@@ -32,8 +32,14 @@ const UsernameScreen: React.FC<Props> = ({ navigation }) => {
     if (state.solObj) {
       if (state.userKeypair !== undefined) {
         const ownerKeypair = Keypair.fromSecretKey(Uint8Array.from([
-          64, 49, 21, 122, 173, 218, 147, 45, 207, 84, 138, 105, 6, 50, 18, 81, 174, 246, 20, 171, 195, 135, 70, 222, 225, 154, 217, 74, 218, 186, 191, 197, 49, 170, 69, 11, 200, 3, 223, 9, 39, 74, 201, 163, 68, 222, 53, 183, 52, 220, 243, 79, 228, 240, 168, 172, 218, 155, 91, 56, 123, 136, 222, 143
+          24, 141, 66, 67, 249, 232, 46, 87, 146, 92, 202,
+          113, 218, 170, 117, 12, 64, 36, 34, 9, 248, 17,
+          124, 45, 90, 66, 12, 170, 28, 203, 105, 186, 42,
+          196, 231, 116, 215, 234, 255, 198, 149, 28, 113, 45,
+          198, 192, 110, 207, 115, 18, 6, 49, 160, 10, 212,
+          55, 171, 129, 46, 213, 228, 167, 128, 111
         ]))
+        console.log(ownerKeypair.publicKey.toString())
         try {
           await state.solObj.createWalletWithName(ownerKeypair, username)
           const seed = state.solObj.seed.toString()
@@ -42,11 +48,12 @@ const UsernameScreen: React.FC<Props> = ({ navigation }) => {
           await AsyncStorage.setItem("userSeed", seed)
           dispatch(setUserSeed(seed))
           dispatch(setIsLoading(false))
-          navigation.navigate('Passcode');
         } catch (err) {
           console.log(err)
         }
       }
+      navigation.navigate('Passcode');
+
 
     }
   };
@@ -82,7 +89,9 @@ const UsernameScreen: React.FC<Props> = ({ navigation }) => {
           onPress={() => {
             handleUsernameSubmit();
           }}
-          style={styles.buttonStyle}>
+          style={styles.buttonStyle}
+
+        >
           <Text style={styles.buttonTextStyle}>next</Text>
         </TouchableOpacity>
       </View>

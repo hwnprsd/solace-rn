@@ -113,21 +113,19 @@ const GlobalProvider = ({ children }: { children: any }) => {
     // await AsyncStorage.removeItem("userKeypair")
     // await AsyncStorage.removeItem("userSeed")
 
-
-
-    console.log("STATE", state)
     const userData = await AsyncStorage.getItem("user")
-    console.log("USER DATA", userData)
-    const keyRes = await AsyncStorage.getItem("userKeypair")
-    if (!keyRes) return
-    const userKeypair = JSON.parse(keyRes)
+    const userKeypair = await AsyncStorage.getItem("userKeypair")
     const userSeed = await AsyncStorage.getItem("userSeed")
-    console.log(userKeypair, userSeed)
-    if (userKeypair !== null && userSeed !== null && userData !== null) {
+
+    console.log(userData, userKeypair, userSeed)
+    console.log("after getting")
+    if (userData !== null) {
       // if (userData)
       //   const user = JSON.parse(userData);
 
-      const owner = Keypair.fromSecretKey(userKeypair)
+      // @ts-ignore
+      // const owner = Keypair.fromSecretKey(Buffer.from(userKeypair))
+      const owner = Keypair.generate()
       const wallet = new NodeWallet(owner)
 
       console.log(wallet.payer, "WALLET")
@@ -135,13 +133,14 @@ const GlobalProvider = ({ children }: { children: any }) => {
       const solaceIdl = IDL as Solace;
       const connection = new Connection(clusterApiUrl("testnet"))
       const program = new Program(solaceIdl, new anchor.web3.PublicKey('8FRYfiEcSPFuJd27jkKaPBwFCiXDFYrnfwqgH9JFjS2U'), new Provider(connection, wallet, { preflightCommitment: "confirmed" }));
-      const sol = SolaceSDK.fromSeed(userSeed, { program, owner: wallet.payer, apiProvider: new ApiProvider("") })
+      // if(!userSeed) 
+      // const sol = SolaceSDK.fromSeed(userSeed, { program, owner: wallet.payer, apiProvider: new ApiProvider("") })
 
-      // const sol = new SolaceSDK({ program, owner: wallet.payer, apiProvider: new ApiProvider("") })
+      const sol = new SolaceSDK({ program, owner: wallet.payer, apiProvider: new ApiProvider("") })
 
       await dispatch(setUser(userData));
       await dispatch(setUserKeypair(userKeypair))
-      await dispatch(setUserSeed(userSeed))
+      // await dispatch(setUserSeed(userSeed))
       await dispatch(setAccountStatus(AccountStatus.EXISITING));
       await dispatch(setUserProgram(program))
       //@ts-ignore
@@ -149,7 +148,7 @@ const GlobalProvider = ({ children }: { children: any }) => {
 
 
     } else {
-
+      console.log('INSIDE NEW USER')
       const newAccKeyPair = Keypair.generate()
       const newSk = newAccKeyPair.secretKey
 
@@ -174,6 +173,7 @@ const GlobalProvider = ({ children }: { children: any }) => {
   };
 
   useEffect(() => {
+    console.log("get initial ")
     getInitialData();
   }, []);
 

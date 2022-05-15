@@ -1,17 +1,19 @@
-import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
-import React, {useContext} from 'react';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import React, { useContext } from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './styles';
-import {GlobalContext} from '../../../state/contexts/GlobalContext';
-import {changeUserName} from '../../../state/actions/global';
+import { GlobalContext } from '../../../state/contexts/GlobalContext';
+import { changeUserName } from '../../../state/actions/global';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SYSVAR_SLOT_HASHES_PUBKEY } from '@solana/web3.js';
 
 export type Props = {
   navigation: any;
 };
 
-const WalletScreen: React.FC<Props> = ({navigation}) => {
+const WalletScreen: React.FC<Props> = ({ navigation }) => {
   const DATA = [
     {
       id: 1,
@@ -53,11 +55,11 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
       date: new Date(),
       username: 'ankit.solace.money',
     },
-    {id: 9, username: 'sethi.solace.money', date: new Date()},
+    { id: 9, username: 'sethi.solace.money', date: new Date() },
   ];
 
   const {
-    state: {user},
+    state: { user },
     dispatch,
   } = useContext(GlobalContext);
 
@@ -77,7 +79,7 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
           source={require('../../../../assets/images/solace/solace-icon.png')}
           style={styles.image}
         />
-        <Text style={styles.username}>{user?.username}.solace.money</Text>
+        <Text style={styles.username}>ashwin.solace.money</Text>
       </View>
       <View style={styles.headingContainer}>
         <Text style={styles.price}>$0.04</Text>
