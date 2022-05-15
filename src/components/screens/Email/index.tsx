@@ -1,5 +1,4 @@
-
-import React, { useContext, useState } from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -8,18 +7,18 @@ import {
   ScrollView,
 } from 'react-native';
 import styles from './styles';
-import { GlobalContext } from '../../../state/contexts/GlobalContext';
-import { setOnboardingUser } from '../../../state/actions/global';
+import {GlobalContext} from '../../../state/contexts/GlobalContext';
+import {setOnboardingUser} from '../../../state/actions/global';
 
 export type Props = {
   navigation: any;
 };
 
-const EmailScreen: React.FC<Props> = ({ navigation }) => {
+const EmailScreen: React.FC<Props> = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
 
-  const { state, dispatch } = useContext(GlobalContext);
+  const {state, dispatch} = useContext(GlobalContext);
 
   const validate = (text: string) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -34,7 +33,7 @@ const EmailScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   const handleMailSubmit = () => {
-    dispatch(setOnboardingUser({ ...state.onboardingUser, email }));
+    dispatch(setOnboardingUser({...state.onboardingUser, email}));
   };
 
   return (
@@ -65,7 +64,7 @@ const EmailScreen: React.FC<Props> = ({ navigation }) => {
           <Text
             style={[
               styles.buttonTextStyle,
-              { color: isValid ? 'black' : '#9999a5' },
+              {color: isValid ? 'black' : '#9999a5'},
             ]}>
             next
           </Text>

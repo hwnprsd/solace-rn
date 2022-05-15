@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -57,6 +57,8 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
     {id: 9, username: 'sethi.solace.money', date: new Date()},
   ];
 
+  const [username, setUsername] = useState('');
+
   const {
     state: {user},
     dispatch,
@@ -89,7 +91,9 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
           source={require('../../../../assets/images/solace/solace-icon.png')}
           style={styles.image}
         />
-        <Text style={styles.username}>{user?.username}.solace.money</Text>
+        <Text style={styles.username}>
+          {user?.username ? user.username : username}.solace.money
+        </Text>
       </View>
       <View style={styles.headingContainer}>
         <Text style={styles.price}>$0.04</Text>
@@ -112,7 +116,9 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
             </View>
             <Text style={styles.buttonText}>scan</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => AsyncStorage.removeItem('user')}>
             <View style={styles.iconBackground}>
               <AntDesign name="arrowdown" size={20} color="black" />
             </View>
