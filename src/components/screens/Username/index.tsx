@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-
+import React, {useContext, useState} from 'react';
 
 import styles from './styles';
 import {
@@ -9,45 +8,55 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import { GlobalContext } from '../../../state/contexts/GlobalContext';
-import { setIsLoading, setOnboardingUser, setUser, setUserSeed } from '../../../state/actions/global';
-import { Keypair } from '@solana/web3.js';
+import {GlobalContext} from '../../../state/contexts/GlobalContext';
+import {
+  setOnboardingUser,
+  setUser,
+  setUserSeed,
+} from '../../../state/actions/global';
+import {Keypair} from '@solana/web3.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type Props = {
   navigation: any;
 };
 
-const UsernameScreen: React.FC<Props> = ({ navigation }) => {
+const UsernameScreen: React.FC<Props> = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [borderColor, setBorderColor] = useState('#fff3');
   const [infoText, setInfoText] = useState('your username will be public');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { state, dispatch } = useContext(GlobalContext);
-
+  const {state, dispatch} = useContext(GlobalContext);
 
   const handleUsernameSubmit = async () => {
-    dispatch(setIsLoading(true))
-    dispatch(setOnboardingUser({ ...state.onboardingUser, username }));
+    setIsLoading(true);
+    dispatch(setOnboardingUser({...state.onboardingUser, username}));
     if (state.solObj) {
       if (state.userKeypair !== undefined) {
-        const ownerKeypair = Keypair.fromSecretKey(Uint8Array.from([
-          64, 49, 21, 122, 173, 218, 147, 45, 207, 84, 138, 105, 6, 50, 18, 81, 174, 246, 20, 171, 195, 135, 70, 222, 225, 154, 217, 74, 218, 186, 191, 197, 49, 170, 69, 11, 200, 3, 223, 9, 39, 74, 201, 163, 68, 222, 53, 183, 52, 220, 243, 79, 228, 240, 168, 172, 218, 155, 91, 56, 123, 136, 222, 143
-        ]))
+        const ownerKeypair = Keypair.fromSecretKey(
+          Uint8Array.from([
+            64, 49, 21, 122, 173, 218, 147, 45, 207, 84, 138, 105, 6, 50, 18,
+            81, 174, 246, 20, 171, 195, 135, 70, 222, 225, 154, 217, 74, 218,
+            186, 191, 197, 49, 170, 69, 11, 200, 3, 223, 9, 39, 74, 201, 163,
+            68, 222, 53, 183, 52, 220, 243, 79, 228, 240, 168, 172, 218, 155,
+            91, 56, 123, 136, 222, 143,
+          ]),
+        );
         try {
-          await state.solObj.createWalletWithName(ownerKeypair, username)
-          const seed = state.solObj.seed.toString()
-          if (seed)
-            console.log(seed, "SEED BB")
-          await AsyncStorage.setItem("userSeed", seed)
-          dispatch(setUserSeed(seed))
-          dispatch(setIsLoading(false))
+          await state.solObj.createWalletWithName(ownerKeypair, username);
+          const seed = state.solObj.seed.toString();
+          if (seed) {
+            console.log(seed, 'SEED BB');
+            await AsyncStorage.setItem('userSeed', seed);
+            dispatch(setUserSeed(seed));
+            setIsLoading(true);
+          }
           navigation.navigate('Passcode');
         } catch (err) {
-          console.log(err)
+          console.log(err);
         }
       }
-
     }
   };
 
@@ -63,7 +72,7 @@ const UsernameScreen: React.FC<Props> = ({ navigation }) => {
             choose a username that others can use to send you money
           </Text>
           <TextInput
-            style={[styles.textInput, { borderColor }]}
+            style={[styles.textInput, {borderColor}]}
             placeholder="username"
             placeholderTextColor="#fff6"
             value={username}

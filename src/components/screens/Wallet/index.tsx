@@ -1,11 +1,12 @@
 import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './styles';
 import {GlobalContext} from '../../../state/contexts/GlobalContext';
-import {changeUserName} from '../../../state/actions/global';
+import {changeUserName, setUser} from '../../../state/actions/global';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type Props = {
   navigation: any;
@@ -64,6 +65,17 @@ const WalletScreen: React.FC<Props> = ({navigation}) => {
   const handleSend = () => {
     navigation.navigate('Send');
   };
+
+  useEffect(() => {
+    const getInitialData = async () => {
+      const userdata = await AsyncStorage.getItem('user');
+      if (userdata) {
+        const _user = JSON.parse(userdata);
+        dispatch(setUser(_user));
+      }
+    };
+    getInitialData();
+  }, [dispatch]);
 
   return (
     <ScrollView contentContainerStyle={styles.contentContainer} bounces={false}>

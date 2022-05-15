@@ -1,11 +1,9 @@
 import React from 'react';
-
 import HomeScreen from '../components/screens/Home';
 import EmailScreen from '../components/screens/Email';
-import CheckMailScreen from '../components/screens/CheckMail';
 import UsernameScreen from '../components/screens/Username';
 import PasscodeScreen from '../components/screens/Passcode';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import ConfirmPasscodeScreen from '../components/screens/ConfirmPasscode';
 
@@ -14,7 +12,7 @@ const OnboardingStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={{ headerShown: false }}>
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Email" component={EmailScreen} />
       <Stack.Screen name="Username" component={UsernameScreen} />

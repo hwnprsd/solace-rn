@@ -1,5 +1,4 @@
-
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -14,16 +13,16 @@ import {
   GlobalContext,
 } from '../../../state/contexts/GlobalContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setAccountStatus, setUser } from '../../../state/actions/global';
+import {setAccountStatus, setUser} from '../../../state/actions/global';
 
 export type Props = {
   navigation: any;
 };
 
-const ConfirmPasscodeScreen: React.FC<Props> = ({ navigation }) => {
+const ConfirmPasscodeScreen: React.FC<Props> = ({navigation}) => {
   const [code, setCode] = useState('12345');
   const textInputRef = useRef(null);
-  const { state, dispatch } = useContext(GlobalContext);
+  const {state, dispatch} = useContext(GlobalContext);
   const [pinReady, setPinReady] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const MAX_LENGTH = 5;
