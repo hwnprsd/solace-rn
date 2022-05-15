@@ -15,7 +15,7 @@ export type Props = {
 };
 
 const EmailScreen: React.FC<Props> = ({navigation}) => {
-  const [email, setEmail] = useState('ankitn1311@gmail.com');
+  const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
 
   const {state, dispatch} = useContext(GlobalContext);
