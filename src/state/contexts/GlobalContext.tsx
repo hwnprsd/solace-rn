@@ -109,9 +109,9 @@ const GlobalProvider = ({ children }: { children: any }) => {
    */
   const getInitialData = async () => {
 
-    // await AsyncStorage.removeItem("user")
-    // await AsyncStorage.removeItem("userKeypair")
-    // await AsyncStorage.removeItem("userSeed")
+    await AsyncStorage.removeItem("user")
+    await AsyncStorage.removeItem("userKeypair")
+    await AsyncStorage.removeItem("userSeed")
 
     const userData = await AsyncStorage.getItem("user")
     const userKeypair = await AsyncStorage.getItem("userKeypair")

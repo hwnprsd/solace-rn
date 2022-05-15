@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './styles';
 import { GlobalContext } from '../../../state/contexts/GlobalContext';
-import { changeUserName } from '../../../state/actions/global';
+import { changeUserName, setUser } from '../../../state/actions/global';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SYSVAR_SLOT_HASHES_PUBKEY } from '@solana/web3.js';
 
@@ -58,10 +58,23 @@ const WalletScreen: React.FC<Props> = ({ navigation }) => {
     { id: 9, username: 'sethi.solace.money', date: new Date() },
   ];
 
+
   const {
     state: { user },
     dispatch,
   } = useContext(GlobalContext);
+
+  useEffect(() => {
+    const getInitialData = async () => {
+      const userdata = await AsyncStorage.getItem('user');
+      if (userdata) {
+        const _user = JSON.parse(userdata);
+        dispatch(setUser(_user));
+      }
+    };
+    getInitialData();
+  }, [dispatch]);
+
 
   const handleSend = () => {
     navigation.navigate('Send');
@@ -79,7 +92,7 @@ const WalletScreen: React.FC<Props> = ({ navigation }) => {
           source={require('../../../../assets/images/solace/solace-icon.png')}
           style={styles.image}
         />
-        <Text style={styles.username}>ashwin.solace.money</Text>
+        <Text style={styles.username}>{user?.username}.solace.money</Text>
       </View>
       <View style={styles.headingContainer}>
         <Text style={styles.price}>$0.04</Text>
