@@ -40,6 +40,24 @@ const reducer = (state: any, action: { type: string; payload: any }) => {
         ...state,
         solObj: payload
       }
+    };
+    case 'SET_USER_KEYPAIR': {
+      return {
+        ...state,
+        userKeypair: payload
+      }
+    };
+    case 'SET_USER_SEED': {
+      return {
+        ...state,
+        userSeed: payload
+      }
+    };
+    case 'SET_LOADING': {
+      return {
+        ...state,
+        isLoading: payload
+      }
     }
     default:
       return state;

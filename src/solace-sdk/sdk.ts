@@ -55,12 +55,12 @@ export class SolaceSDK {
     );
 
     // await this.apiProvider.requestAirdrop(this.owner.publicKey);
-    await this.program.provider.connection.confirmTransaction(
-      await this.program.provider.connection.requestAirdrop(
-        this.owner.publicKey,
-        1 * LAMPORTS_PER_SOL
-      )
-    );
+    // await this.program.provider.connection.confirmTransaction(
+    //   await this.program.provider.connection.requestAirdrop(
+    //     this.owner.publicKey,
+    //     1 * LAMPORTS_PER_SOL
+    //   )
+    // );
 
     const tx = await this.program.rpc.createWallet(
       this.owner.publicKey,
@@ -78,6 +78,9 @@ export class SolaceSDK {
       }
     );
     this.wallet = walletAddress;
+    this.seed = seedBase.publicKey;
+    console.log(this.seed)
+
     await this.confirmTx(tx);
     console.log(tx, "Transaction ID")
 

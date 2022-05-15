@@ -15,7 +15,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   // console.log(solana);
   const getData = async () => {
     const data = await AsyncStorage.getItem('passcode');
-    console.log('DATA: ', data);
+    // console.log('DATA: ', data);
   };
 
   getData();

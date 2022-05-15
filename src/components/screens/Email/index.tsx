@@ -16,23 +16,20 @@ export type Props = {
 };
 
 const EmailScreen: React.FC<Props> = ({ navigation }) => {
-  const [email, setEmail] = useState('ankitn1311@gmail.com');
+  const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
 
   const { state, dispatch } = useContext(GlobalContext);
 
   const validate = (text: string) => {
-    console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(text) === false) {
-      console.log('Email is Not Correct');
       setEmail(text);
       setIsValid(false);
       return false;
     } else {
       setEmail(text);
       setIsValid(true);
-      console.log('Email is Correct');
     }
   };
 

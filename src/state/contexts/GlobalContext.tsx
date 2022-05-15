@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 
 import { Contact } from '../../components/wallet/ContactItem';
-import { setAccountStatus, setSolaceObj, setUser, setUserProgram } from '../actions/global';
+import { setAccountStatus, setSolaceObj, setUser, setUserKeypair, setUserProgram, setUserSeed } from '../actions/global';
 import globalReducer from '../reducers/global';
 import { SolaceSDK } from "../../solace-sdk/sdk";
 import * as anchor from '../../@project-serum/anchor';
@@ -26,15 +26,16 @@ type InitialStateType = {
   user?: User;
   program?: anchor.Program<Solace>,
   solObj?: SolaceSDK,
+  userKeypair?: string,
+  userSeed?: string,
   onboardingUser?: User;
   contact?: Contact;
   contacts?: Contact[];
+  isLoading: boolean
 };
 
 export type User = {
   username?: string;
-  keyPair: string;
-  seed?: string;
   email?: string;
   passcode?: string;
 };
@@ -47,9 +48,14 @@ export enum AccountStatus {
 }
 
 const initialState = {
+  isLoading: false,
+  userKeypair: '',
+  userSeed: '',
   accountStatus: AccountStatus.NEW,
   onboardingUser: {
-    keyPair: '',
+    email: '',
+    username: '',
+    pascode: ''
   },
 
   contacts: [
@@ -59,12 +65,6 @@ const initialState = {
       username: 'ashwin.solace.money',
       address: '1231jkajsdkf02198487',
     },
-    // {
-    //   id: new Date().getTime().toString() + Math.random().toString(),
-    //   name: 'sarthak sharma',
-    //   username: 'sarthak.solace.money',
-    //   address: 'alkjsdfoi1093890123909',
-    // },
   ],
 };
 
@@ -77,59 +77,99 @@ const GlobalProvider = ({ children }: { children: any }) => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
 
 
+  /// GET local data
+  const getLocalData = async (key: string) => {
+    const res = await AsyncStorage.getItem("key")
+    return res
+  }
+
+  /// Clear local data
+  const removeItem = async (key: string) => {
+    try {
+      await AsyncStorage.removeItem(key)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  /// Set Local data
+  const setItem = async (key: string, item: any) => {
+    try {
+      await AsyncStorage.setItem(key, item)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
+  /**
+   * 
+   * 1. If user exists then create instantiate solace for user
+   * 2. If user is new, create a new keypair for user and set it locally
+   */
   const getInitialData = async () => {
-    // console.log(state.solObj, "SOLACE BB");
-    AsyncStorage.removeItem("user")
-    const response = await AsyncStorage.getItem('user');
-    if (response) {
-      console.log('response', response);
-      const user = JSON.parse(response);
 
-      if (state.solObj) {
-        if (state.user?.keyPair !== undefined) {
-          const owner = Keypair.fromSecretKey(Buffer.from(state.user?.keyPair))
-          // SolaceSDK.fromSeed(user.seed)
+    // await AsyncStorage.removeItem("user")
+    // await AsyncStorage.removeItem("userKeypair")
+    // await AsyncStorage.removeItem("userSeed")
 
-        }
 
-      }
-      const wallet = new NodeWallet(user.keyPair)
+
+    console.log("STATE", state)
+    const userData = await AsyncStorage.getItem("user")
+    console.log("USER DATA", userData)
+    const keyRes = await AsyncStorage.getItem("userKeypair")
+    if (!keyRes) return
+    const userKeypair = JSON.parse(keyRes)
+    const userSeed = await AsyncStorage.getItem("userSeed")
+    console.log(userKeypair, userSeed)
+    if (userKeypair !== null && userSeed !== null && userData !== null) {
+      // if (userData)
+      //   const user = JSON.parse(userData);
+
+      const owner = Keypair.fromSecretKey(userKeypair)
+      const wallet = new NodeWallet(owner)
+
+      console.log(wallet.payer, "WALLET")
 
       const solaceIdl = IDL as Solace;
       const connection = new Connection(clusterApiUrl("testnet"))
       const program = new Program(solaceIdl, new anchor.web3.PublicKey('8FRYfiEcSPFuJd27jkKaPBwFCiXDFYrnfwqgH9JFjS2U'), new Provider(connection, wallet, { preflightCommitment: "confirmed" }));
-      const sol = new SolaceSDK({ program, owner: wallet.payer, apiProvider: new ApiProvider("") })
+      const sol = SolaceSDK.fromSeed(userSeed, { program, owner: wallet.payer, apiProvider: new ApiProvider("") })
 
-      await dispatch(setUser(user));
+      // const sol = new SolaceSDK({ program, owner: wallet.payer, apiProvider: new ApiProvider("") })
+
+      await dispatch(setUser(userData));
+      await dispatch(setUserKeypair(userKeypair))
+      await dispatch(setUserSeed(userSeed))
       await dispatch(setAccountStatus(AccountStatus.EXISITING));
       await dispatch(setUserProgram(program))
+      //@ts-ignore
+      await dispatch(setSolaceObj(sol))
+
+
     } else {
 
-      /// DO NOTHING
       const newAccKeyPair = Keypair.generate()
+      const newSk = newAccKeyPair.secretKey
+
       const wallet = new NodeWallet(newAccKeyPair)
-      const str = newAccKeyPair.secretKey.toString();
-      const key = Buffer.from(str)
-      // Keypair.fromSecretKey(key);
+
       const solaceIdl = IDL as Solace;
       const connection = new Connection(clusterApiUrl("testnet"))
       const program = new Program(solaceIdl, new anchor.web3.PublicKey('8FRYfiEcSPFuJd27jkKaPBwFCiXDFYrnfwqgH9JFjS2U'), new Provider(connection, wallet, { preflightCommitment: "confirmed" }));
       const sol = new SolaceSDK({ program, owner: wallet.payer, apiProvider: new ApiProvider("") })
-      const userObj: User = {
-        keyPair: newAccKeyPair.secretKey.toString(),
 
-
-      }
-      await AsyncStorage.setItem("user", JSON.stringify(userObj))
+      // console.log("NEW SECRET KEY", newSk)
+      await AsyncStorage.setItem("userKeypair", JSON.stringify(newSk))
 
       await dispatch(setUserProgram(program))
       await dispatch(setSolaceObj(sol))
       await dispatch(setAccountStatus(AccountStatus.NEW));
-
-      const response = await AsyncStorage.getItem('user');
-      console.log("SET NEW USER LETS GO", response);
-      // const seed = "LMAO"
-
+      await dispatch(setUserKeypair(newSk))
+      // console.log(state.userKeypair)
+      const response = await AsyncStorage.getItem('userKeypair');
+      console.log("SET NEW USER KEYPAIR", response);
     }
   };
 

@@ -5,6 +5,7 @@ import GlobalContext from './src/state/contexts/GlobalContext';
 
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
+
   return (
     <GlobalProvider>
       <Navigation />

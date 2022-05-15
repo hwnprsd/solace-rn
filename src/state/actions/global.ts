@@ -11,6 +11,13 @@ export const setUser = (user: any) => {
   };
 };
 
+export const setIsLoading = (isLoading: boolean) => {
+  return {
+    type: "SET_LOADING",
+    payload: isLoading
+  }
+}
+
 export const setAccountStatus = (status: AccountStatus) => {
   return {
     type: 'SET_ACCOUNT_STATUS',
@@ -29,6 +36,20 @@ export const setSolaceObj = (sol: SolaceSDK) => {
   return {
     type: 'SET_SOLACE',
     payload: sol
+  }
+}
+
+export const setUserKeypair = (keypair: any) => {
+  return {
+    type: 'SET_USER_KEYPAIR',
+    payload: keypair
+  }
+}
+
+export const setUserSeed = (seed: string) => {
+  return {
+    type: 'SET_USER_SEED',
+    payload: seed
   }
 }
 
